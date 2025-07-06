@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Switcher</title>
+  <style>
+    body {
+  text-align: center;
+  font-family: sans-serif;
+  transition: background-color 0.5s ease-in-out; /* 👈 smooth fade */
+}
+
+    #button {
+      margin-top: 40px;
+    }
+    button.color {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CLICK ANY BUTTON</h1>
+
+  <div id="button">
+    <button class="color" style="background-color: red;"></button>
+    <button class="color" style="background-color: blue;"></button>
+    <button class="color" style="background-color: yellow;"></button>
+    <button class="color" style="background-color: beige;"></button>
+  </div>
+
+  <!-- <script>
+    const buttons = document.querySelectorAll(".color");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const colorName = button.textContent.toLowerCase();
+        document.body.style.backgroundClip = colorName
+      });
+    });
+  </script> -->
+
+  <script>
+  const buttons = document.querySelectorAll(".color");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Get the style attribute (e.g., "background-color: red;")
+      const styleAttr = button.getAttribute("style");
+      console.log(styleAttr)
+
+      // Extract the color from the style string
+    //   const color = styleAttr.split(":")[1].replace(";", "").trim();
+
+      // Set that color as the body background
+      document.body.style = styleAttr;
+    });
+  });
+</script>
+
+
+</body>
+</html>
