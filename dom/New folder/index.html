@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live News - GNews API</title>
+</head>
+<body>
+  <h2>📰 Today's Top News (India)</h2>
+  <div id="newsContainer"></div>
+
+  <script>
+    const API_KEY = "c8b2dcfb9173ff93b63b7e63a70605a1"; // Use your actual API key
+    const URL = `https://gnews.io/api/v4/top-headlines?lang=en&country=in&max=5&token=${API_KEY}`;
+    const container = document.getElementById("newsContainer");
+
+    fetch(URL)
+      .then(res => res.json())
+      .then(data => {
+        if (data.articles && data.articles.length > 0) {
+          data.articles.forEach(article => {
+            const div = document.createElement("div");
+            div.style.border = "1px solid #000";
+            div.style.margin = "20px 0";
+            div.style.padding = "10px";
+            div.style.maxWidth = "600px";
+
+            div.innerHTML = `
+              <h3>${article.title}</h3>
+              <img src="${article.image}" alt="News image" style="width:100%; max-height:300px; object-fit:cover;" />
+              <p>${article.description}</p>
+              <a href="${article.url}" target="_blank">Read full article</a>
+            `;
+            container.appendChild(div);
+          });
+        } else {
+          container.innerHTML = "<p>No news found.</p>";
+        }
+      })
+      .catch(err => {
+        console.error("Error loading news:", err);
+        container.innerHTML = "<p>Error loading news.</p>";
+      });
+  </script>
+</body>
+</html>
