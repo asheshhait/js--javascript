@@ -1,0 +1,173 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Normal-Dark</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      transition: background-color 0.5s ease;
+      display: flex;
+      justify-content: center;
+      transform: translateY(300px);
+      background-color: white;
+    }
+
+    body.dark {
+      background-color: #121212;
+      color: white;
+    }
+
+    #container {
+      height: 300px;
+      width: 300px;
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #toggle-holder {
+      height: 50px;
+      width: 100px;
+      background-color: red;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 25px;
+    }
+
+    #toggle-circle {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background-color: rgb(180, 145, 145);
+      transition: transform 0.3s ease;
+    }
+
+    .move-right {
+      transform: translateX(50px);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="toggle-holder">
+      <div id="toggle-circle"></div>
+    </div>
+  </div>
+  <button id="toggle-button">Toggle Dark Mode</button>
+
+  <script>
+    const circle = document.querySelector("#toggle-circle");
+    const toggleBtn = document.querySelector("#toggle-button");
+    const body = document.body;
+
+    let darkMode = false;
+
+    toggleBtn.addEventListener("click", () => {
+      darkMode = !darkMode;
+
+      // Toggle body class
+      body.classList.toggle("dark");
+
+      // Toggle circle position
+      circle.classList.toggle("move-right");
+
+      // Optionally change button text
+      toggleBtn.textContent = darkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
+    });
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light/Dark Switch</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: white;
+      color: black;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.dark {
+      background-color: #121212;
+      color: white;
+    }
+
+    #holder {
+      width: 120px;
+      height: 50px;
+      background-color: lightgray;
+      border-radius: 30px;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #circle {
+      width: 30px;
+      height: 30px;
+      background-color: tomato;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Click the switch</h2>
+
+  <div id="holder">
+    <div id="circle"></div>
+  </div>
+
+  <button id="toggle-btn">Toggle Mode</button>
+
+  <script>
+    const circle = document.getElementById("circle");
+    const toggleBtn = document.getElementById("toggle-btn");
+    const body = document.body;
+
+    let darkMode = false; // default is light mode
+
+    toggleBtn.addEventListener("click", () => {
+      darkMode = !darkMode;
+
+      if (darkMode) {
+        circle.style.transform = "translateX(60px)";
+        body.classList.add("dark");
+        toggleBtn.textContent = "Switch to Light Mode";
+      } else {
+        circle.style.transform = "translateX(0px)";
+        body.classList.remove("dark");
+        toggleBtn.textContent = "Switch to Dark Mode";
+      }
+    });
+  </script>
+
+</body>
+</html>

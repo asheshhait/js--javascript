@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counter App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #count-place {
+      font-size: 60px;
+      margin: 20px;
+      color: black;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .warning {
+      font-size: 18px;
+      color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="count">
+    <div id="count-place">0</div>
+    <div id="message" class="warning"></div>
+    <button id="count-up">Count Up</button>
+    <button id="count-down">Count Down</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <script>
+    let count = 0;
+    const maxLimit = 10;
+    const minLimit = -5;
+
+    const countDisplay = document.querySelector("#count-place");
+    const messageDisplay = document.querySelector("#message");
+    const countUp = document.querySelector("#count-up");
+    const countDown = document.querySelector("#count-down");
+    const resetButton = document.querySelector("#reset");
+
+    function updateValue(message = "") {
+      // Show count
+      countDisplay.textContent = count;
+
+      // Set color
+      countDisplay.style.color = count > 0 ? "green" : count < 0 ? "red" : "black";
+
+      // Optional message
+      messageDisplay.textContent = message;
+
+      // Remove message after 1.5 seconds
+      if (message) {
+        setTimeout(() => {
+          messageDisplay.textContent = "";
+        }, 1500);
+      }
+    }
+
+    countUp.addEventListener("click", () => {
+      if (count < maxLimit) {
+        count++;
+        updateValue();
+      } else {
+        updateValue("Maximum limit reached!");
+      }
+    });
+
+    countDown.addEventListener("click", () => {
+      if (count > minLimit) {
+        count--;
+        updateValue();
+      } else {
+        updateValue("Minimum limit reached!");
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      count = 0;
+      updateValue();
+    });
+  </script>
+</body>
+
+</html>
