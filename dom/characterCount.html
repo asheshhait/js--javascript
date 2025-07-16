@@ -1,0 +1,50 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>character Counter</h1>
+    <textarea name="" id="inputText" placeholder="type some thing here......."></textarea>
+    <div id="display"></div>
+    <script>
+        const textarea = document.querySelector("#inputText")
+        const display = document.querySelector("#display")
+        textarea.addEventListener("input",()=>{
+            display.innerHTML= textarea.value.length
+            
+        })
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Counter</title>
+</head>
+<body>
+  <h1>Character Counter</h1>
+
+  <textarea id="inputText" placeholder="Type something here..."></textarea><br><br>
+
+  <button id="countBtn">Count Characters</button>
+
+  <div id="display"></div>
+
+  <script>
+    const textarea = document.querySelector("#inputText");
+    const display = document.querySelector("#display");
+    const button = document.querySelector("#countBtn");
+
+    button.addEventListener("click", () => {
+      display.innerHTML = `Characters: ${textarea.value.length}`;
+    });
+  </script>
+</body>
+</html>
