@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .hidden {
+  display: none;
+}
+
+</style>
+<body>
+    <div id="container">
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam!
+            <div class="hidden" id="readmore">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo odit qui adipisci dolorum minima, delectus dignissimos possimus facilis laudantium, consectetur ipsam perferendis aut inventore in enim dolores aspernatur. Minima, unde!
+            </div>
+        </p>
+        <button id="toggleButton">read more</button>
+    </div>
+    <script>
+        const button = document.querySelector("#toggleButton")
+        const readmore = document.querySelector("#readmore")
+        button.addEventListener("click",()=>{
+          let ash =  readmore.classList.toggle("hidden")
+            console.log(ash)
+        })
+        if (readmore.classList.contains("hidden")) {
+    button.innerText = "Read More";
+  } else {
+    button.innerText = "Read Less";
+  }
+    </script>
+</body>
+</html>

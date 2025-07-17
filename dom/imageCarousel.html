@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Carousel</title>
+  <style>
+    .carousel {
+      width: 300px;
+      position: relative;
+    }
+    .image {
+      width: 100%;
+      display: none;
+    }
+    button {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="carousel">
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1682687221080-5cb261c645cb?w=500&auto=format&fit=crop&q=60" style="width: 100%" alt="" />
+    </div>
+    <div class="image">
+      <img src="https://plus.unsplash.com/premium_photo-1751835491662-e09a83886291?w=500&auto=format&fit=crop&q=60" style="width: 100%" alt="" />
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1682686580024-580519d4b2d2?w=500&auto=format&fit=crop&q=60" style="width: 100%" alt="" />
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1742268350506-efd0f67ee859?w=500&auto=format&fit=crop&q=60" style="width: 100%" alt="" />
+    </div>
+
+    <button id="previous">Previous</button>
+    <button id="next">Next</button>
+  </div>
+
+  <script>
+    const prevButton = document.querySelector("#previous");
+    const nextButton = document.querySelector("#next");
+    const slides = document.querySelectorAll(".image");
+
+    let currentIndex = 0;
+
+    function showImage(index) {
+      slides.forEach((slide) => {
+        slide.style.display = "none";
+      });
+      slides[index].style.display = "block";
+    }
+
+    prevButton.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showImage(currentIndex);
+    });
+
+    nextButton.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showImage(currentIndex);
+    });
+
+    // Initial display
+    showImage(currentIndex);
+  </script>
+</body>
+</html>
