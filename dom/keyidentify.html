@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>press any key</h1>
+        <div id="output">
+            <p id="keyName"></p>
+            <p id="keyCode"></p>
+            <p id="altkey"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("keydown",(event)=>{
+           let keyname  = document.getElementById("keyName").innerHTML =`Key name is ${event.key}`
+           console.log(keyname)
+            let keycode = document.getElementById("keyCode").innerHTML = `Key code is ${event.keyCode}`
+            console.log(keycode)
+             document.getElementById("altkey").innerHTML = event.altKey
+        })
+    </script>
+</body>
+</html>
