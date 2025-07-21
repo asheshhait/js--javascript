@@ -1,22 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #fff;
+        text-align: center;
+        padding: 30px;
+    }
+
+    #container {
+        color: #fff;
+        text-align: center;
+        padding: 30px;
+    }
+
+    #test-container {
+        max-width: 700px;
+        margin: auto;
+        background: #222;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #display-text {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 100px;
+        font-size: 16px;
+        padding: 10px;
+        border: none;
+        resize: none;
+        outline: none;
+        border-radius: 5px;
+    }
+
+    #stats p {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+</style>
+
 <body>
     <div id="container">
         <h1> test ypur typing speed here</h1>
         <div id="text-container">
-            <p id=" display-text"></p>
+            <p id="display-text"></p>
             <textarea name="text" id="input-area" placeholder="start typing here ....." disabled></textarea>
             <div id="stats">
                 <p>Time: <span id="time">0s</span></p>
-      <p>Speed: <span id="wpm">0</span> WPM</p>
-      <p>Accuracy: <span id="accuracy">0</span>%</p>
+                <p>Speed: <span id="wpm">0</span> WPM</p>
+                <p>Accuracy: <span id="accuracy">0</span>%</p>
             </div>
-             <button id="start-btn">Start Test</button>
+            <button id="start-btn">Start Test</button>
         </div>
     </div>
 
@@ -24,7 +81,84 @@
 
 
     <script>
-        
+        const para = [
+            // "Waking up early can give you a great head start. The quiet of the morning helps you focus better. Many successful people begin their day with planning and reflection. A short workout or meditation can improve your mood. Starting the day right sets the tone for everything that follows.",
+            // "Reading daily improves your vocabulary and comprehension. It opens doors to new ideas and perspectives. Fiction helps build imagination, while non-fiction expands your knowledge. Books can transport you to different times and places. A love for reading is a gift that lasts forever.",
+            // "Coding is like solving puzzles using logic and creativity. It may seem hard at first, but with practice, it becomes easier. Building your first project feels incredibly rewarding. Errors and bugs are part of the learning process. The more you code, the more confident you become.",
+            // "Spending time in nature can reduce stress and boost happiness. The fresh air and greenery calm the mind. Walking through a park or forest refreshes your thoughts. Nature reminds us to slow down and appreciate life. Even a few minutes outside can improve your day.",
+            // "Good habits build strong foundations for success. Waking up early, eating well, and staying organized help you stay productive. Repeating small actions daily leads to big changes. It takes time to form a habit, but it’s worth the effort. Discipline turns goals into reality.",
+            // "Motivation is what gets you started, but habits keep you going. Surround yourself with people who inspire you. Set small goals and celebrate your progress. When you're feeling stuck, take a short break and return with energy. Remember why you started and keep pushing forward.",
+            // "Kindness doesn’t cost anything, but it means everything. A simple smile can change someone’s day. Helping others creates a chain of positivity. Being kind makes you feel better too. In a world where you can be anything, be kind."
+
+            "Practice makes a person perfect.",
+            "Typing fast requires muscle memory and accuracy.",
+            "The quick brown fox jumps over the lazy dog.",
+            "JavaScript makes web pages interactive and dynamic."
+        ]
+
+        const displayText = document.querySelector("#display-text")
+        const inputArea = document.querySelector("#input-area")
+        const time = document.querySelector("#time")
+        const wpm1 = document.querySelector("#wpm")
+        const accuracy1 = document.querySelector("#accuracy")
+        const startbtn = document.querySelector("#start-btn");
+
+        let startTime, interval;
+        let selectedText = "";
+        startbtn.addEventListener("click", starttest);
+        function starttest() {
+            selectedText = para[Math.floor(Math.random() * para.length)]
+            console.log(selectedText)
+            displayText.textContent = selectedText
+            inputArea.value = ""
+            inputArea.disabled = false;
+            inputArea.focus()
+            startTime = Date.now()
+            console.log(startTime)
+            time.textContent = "0s";
+            wpm1.textContent = "0";
+            accuracy1.textContent = "0";
+            clearInterval(interval);
+            interval = setInterval(updateTime, 1000);
+        }
+
+        function updateTime() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            time.textContent = `${elapsed}`
+
+        }
+
+        inputArea.addEventListener("input", () => {
+            const typeText = inputArea.value;
+            if (typeText === selectedText) {
+                end()
+            }
+        })
+
+        function end() {
+            clearInterval(interval)
+            inputArea.disabled = true
+            const timeTaken = (Date.now() - startTime) / 1000; // in seconds
+            const wordsTyped = inputArea.value.trim().split(/\s+/).length;
+            const wpm = Math.round((wordsTyped / timeTaken) * 60);
+
+            const correctChars = countCorrectCharacters(inputArea.value, selectedText);
+            const accuracy = Math.round((correctChars / selectedText.length) * 100);
+
+            wpm1.textContent = wpm;
+            accuracy1.textContent = accuracy;
+        }
+
+        function countCorrectCharacters(typed, target) {
+            let count = 0;
+            for (let i = 0; i < typed.length; i++) {
+                if (typed[i] === target[i]) {
+                    count++;
+                }
+            }
+            return count;
+        }
     </script>
 </body>
+
 </html>
