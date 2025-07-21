@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .todo-container {
+  width: 300px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: sans-serif;
+}
+input {
+  padding: 10px;
+  width: 70%;
+}
+button {
+  padding: 10px;
+}
+li {
+  list-style: none;
+  padding: 8px;
+  margin: 5px 0;
+  background: #eee;
+  cursor: pointer;
+}
+li.done {
+  text-decoration: line-through;
+  background: #c3f3c3;
+}
+
+</style>
+<body>
+  <div class="todo-container">
+  <h2>📝 My To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Enter new task..." />
+  <button id="addTaskBtn">Add Task</button>
+  <ul id="taskList"></ul>
+</div>
+<script>
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
+
+addTaskBtn.addEventListener("click", () => {
+  const taskText = taskInput.value.trim();
+  console.log(taskText)
+  if (taskText === "") return;
+
+  const li = document.createElement("li");
+  li.innerText = taskText;
+
+  // Mark as complete
+  li.addEventListener("click", () => {
+    li.classList.toggle("done");
+  });
+
+  // Delete on double click
+  li.addEventListener("dblclick", () => {
+    taskList.removeChild(li);
+  });
+
+  taskList.appendChild(li);
+  taskInput.value = "";
+});
+
+</script>
+</body>
+</html>

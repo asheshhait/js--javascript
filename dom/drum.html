@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+  background: #222;
+  color: #fff;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.key {
+  border: 4px solid #fff;
+  padding: 20px;
+  width: 100px;
+  text-align: center;
+  font-size: 24px;
+  background-color: #333;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.key span {
+  display: block;
+  font-size: 14px;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+.key.playing {
+  transform: scale(1.1);
+  background-color: #ff4757;
+  box-shadow: 0 0 20px #ff4757;
+}
+
+</style>
+<body>
+    <h1>your own drum</h1>
+    <div class="keys">
+        <div data-key = "A" class="key"></div>
+        <div data-key = "G" class="key"></div>
+        <div data-key = "L" class="key"></div>
+        <div data-key = "SHIFT" class="key"></div>
+        <div data-key = "END" class="key"></div>
+    </div>
+<script>
+    const sound = {
+        'A':'sounds/kick.wav',
+        'G':'sounds/snare.wav',
+        'L':'sounds/tom.wav',
+        'SHIFT':'sounds/crash.wav',
+        'END':'sounds/hihat.wav',
+        
+    };
+    function playSound(e){
+        const key = e.key.toUpperCase()
+        const audio  = sound[key]
+        console.log(audio)
+        const keyDiv = document.querySelector(`.key[data-key="${key}"]`);
+        console.log(keyDiv)
+
+        if(!audio || !keyDiv) return
+
+        const playmusic = new Audio(audio)
+        playmusic.play()
+
+//          keyDiv.classList.add('playing');
+//   setTimeout(() => keyDiv.classList.remove('playing'), 100);
+    }
+
+    window.addEventListener('keydown', playSound);
+</script>
+</body>
+</html>

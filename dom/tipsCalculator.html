@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .calculator {
+  width: 300px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: sans-serif;
+}
+input {
+  padding: 10px;
+  width: 80%;
+}
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+#result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: green;
+}
+
+</style>A
+<body>
+    <div class="calculator">
+  <h2>💰 Tip Calculator</h2>
+  <input type="number" id="bill" placeholder="Bill amount" /><br /><br />
+  <input type="number" id="tip" placeholder="Tip %" /><br /><br />
+  <button id="calculateBtn">Calculate</button>
+
+  <p id="result"></p>
+</div>
+<script>
+    const billinput = document.querySelector("#bill")
+    const tipsinput = document.querySelector("#tip")
+    const calbutton = document.querySelector("#calculateBtn")
+    const result = document.querySelector("#result")
+
+    calbutton.addEventListener("click",()=>{
+        const billvalue = parseFloat(billinput.value)
+        const tipsprsent = parseFloat(tipsinput.value)
+
+        if(isNaN(billvalue)||isNaN(tipsprsent)||billvalue<=0||tipsprsent <0){
+            result.innerText= "Please enter valid inputs.";
+            result.style.color = "red"
+        }
+        const tipsValue = (billvalue*tipsprsent)/100
+        const amount = billvalue+tipsValue
+        result.style.color = "green";
+        result.innerText = `Tip: ₹${tipsValue.toFixed(2)} | Total: ₹${amount.toFixed(2)}`;
+    })
+</script>
+</body>
+</html>

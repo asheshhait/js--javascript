@@ -16,7 +16,7 @@
     </div>
 
     <script>
-        document.addEventListener("keydown",(event)=>{
+        window.addEventListener("keydown",(event)=>{
            let keyname  = document.getElementById("keyName").innerHTML =`Key name is ${event.key}`
            console.log(keyname)
             let keycode = document.getElementById("keyCode").innerHTML = `Key code is ${event.keyCode}`
