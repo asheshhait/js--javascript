@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Generator</title>
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 40px;
+}
+
+.container {
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #28a745;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#qr-code {
+  margin-top: 20px;
+}
+
+#actions {
+  margin-top: 15px;
+}
+
+#actions button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#download-btn {
+  background: #007bff;
+  color: white;
+}
+
+#delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+
+</style>
+<body>
+
+  <h1>🔳 QR Code Generator</h1>
+
+  <div class="container">
+    <input type="text" id="qr-input" placeholder="Enter text or URL">
+    <button id="generate-btn">Generate QR Code</button>
+
+    <div id="qr-code"></div>
+
+    <div id="actions" style="display: none;">
+      <button id="download-btn">Download</button>
+      <button id="delete-btn">Delete</button>
+    </div>
+  </div>
+
+  <!-- QRCode.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+const qrInput = document.getElementById("qr-input");
+const generateBtn = document.getElementById("generate-btn");
+const qrCodeDiv = document.getElementById("qr-code");
+const downloadBtn = document.getElementById("download-btn");
+const deleteBtn = document.getElementById("delete-btn");
+const actionsDiv = document.getElementById("actions");
+
+let qr; // to keep reference
+
+generateBtn.addEventListener("click", () => {
+  const text = qrInput.value.trim();
+
+  if (!text) {
+    alert("Please enter some text");
+    return;
+  }
+
+  // Clear previous QR
+  qrCodeDiv.innerHTML = "";
+
+  // Generate QR
+  qr = new QRCode(qrCodeDiv, {
+    text: text,
+    width: 200,
+    height: 200,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  // Show download/delete buttons
+  setTimeout(() => {
+    // Ensure QR is rendered (it may take 10ms)
+    actionsDiv.style.display = "block";
+  }, 100);
+});
+
+// DOWNLOAD QR
+downloadBtn.addEventListener("click", () => {
+  const img = qrCodeDiv.querySelector("img");
+  if (img) {
+    const link = document.createElement("a");
+    link.href = img.src;
+    link.download = "qr-code.png";
+    link.click();
+  } else {
+    alert("No QR code to download.");
+  }
+});
+
+// DELETE QR
+deleteBtn.addEventListener("click", () => {
+  qrCodeDiv.innerHTML = "";
+  actionsDiv.style.display = "none";
+  qrInput.value = "";
+});
+
+
+  </script>
+</body>
+</html>
