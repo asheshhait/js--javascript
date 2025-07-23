@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.weather-card {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #333;
+}
+.weather-card img {
+  width: 100px;
+  height: 100px;
+}
+
+</style>
+<body>
+  <div class="container">
+    <h1>🌦️ Weather App</h1>
+    <input type="text" id="city-input" placeholder="Enter city name" />
+    <button id="get-weather">Get Weather</button>
+    <div id="weather-result" class="weather-card"></div>
+  </div>
+  <script src="weather.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joke Generator</title>
+
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    background: #007BFF;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    margin: 10px 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+
+  h3 {
+    margin-top: 20px;
+    color: #333;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #444;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <button id="button">Start it</button>
+  <button id="download-btn">Download Joke</button>
+  <div id="container"></div>
+</div>
+
+  <script src="JOKES.JS"></script>
+</body>
+</html>
